@@ -1,0 +1,961 @@
+
+optiboot_atmega328_fat.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000004d4  00007800  00007800  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .stab         00001524  00000000  00000000  00000528  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  2 .stabstr      00000c47  00000000  00000000  00001a4c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00007800 <main>:
+    7800:	11 24       	eor	r1, r1
+    7802:	82 e0       	ldi	r24, 0x02	; 2
+    7804:	80 93 c0 00 	sts	0x00C0, r24
+    7808:	88 e1       	ldi	r24, 0x18	; 24
+    780a:	80 93 c1 00 	sts	0x00C1, r24
+    780e:	86 e0       	ldi	r24, 0x06	; 6
+    7810:	80 93 c2 00 	sts	0x00C2, r24
+    7814:	80 e1       	ldi	r24, 0x10	; 16
+    7816:	80 93 c4 00 	sts	0x00C4, r24
+    781a:	25 9a       	sbi	0x04, 5	; 4
+    781c:	82 e2       	ldi	r24, 0x22	; 34
+    781e:	90 e0       	ldi	r25, 0x00	; 0
+    7820:	43 d2       	rcall	.+1158   	; 0x7ca8 <__eerd_byte_m328p>
+    7822:	85 35       	cpi	r24, 0x55	; 85
+    7824:	71 f4       	brne	.+28     	; 0x7842 <main+0x42>
+    7826:	82 e2       	ldi	r24, 0x22	; 34
+    7828:	90 e0       	ldi	r25, 0x00	; 0
+    782a:	6f ef       	ldi	r22, 0xFF	; 255
+    782c:	45 d2       	rcall	.+1162   	; 0x7cb8 <__eewr_byte_m328p>
+    782e:	14 be       	out	0x34, r1	; 52
+    7830:	89 e2       	ldi	r24, 0x29	; 41
+    7832:	23 d2       	rcall	.+1094   	; 0x7c7a <watchdogConfig>
+    7834:	8a e0       	ldi	r24, 0x0A	; 10
+    7836:	14 d2       	rcall	.+1064   	; 0x7c60 <flash_led>
+    7838:	ca d1       	rcall	.+916    	; 0x7bce <ethernet_init>
+    783a:	81 e0       	ldi	r24, 0x01	; 1
+    783c:	80 93 08 02 	sts	0x0208, r24
+    7840:	0a c0       	rjmp	.+20     	; 0x7856 <main+0x56>
+    7842:	84 b7       	in	r24, 0x34	; 52
+    7844:	14 be       	out	0x34, r1	; 52
+    7846:	81 ff       	sbrs	r24, 1
+    7848:	1e d2       	rcall	.+1084   	; 0x7c86 <appStart>
+    784a:	8d e0       	ldi	r24, 0x0D	; 13
+    784c:	16 d2       	rcall	.+1068   	; 0x7c7a <watchdogConfig>
+    784e:	84 e0       	ldi	r24, 0x04	; 4
+    7850:	07 d2       	rcall	.+1038   	; 0x7c60 <flash_led>
+    7852:	10 92 08 02 	sts	0x0208, r1
+    7856:	c0 e0       	ldi	r28, 0x00	; 0
+    7858:	d0 e0       	ldi	r29, 0x00	; 0
+    785a:	a3 e0       	ldi	r26, 0x03	; 3
+    785c:	ca 2e       	mov	r12, r26
+    785e:	dd 24       	eor	r13, r13
+    7860:	d3 94       	inc	r13
+    7862:	f5 e0       	ldi	r31, 0x05	; 5
+    7864:	ef 2e       	mov	r14, r31
+    7866:	e1 e1       	ldi	r30, 0x11	; 17
+    7868:	fe 2e       	mov	r15, r30
+    786a:	96 d1       	rcall	.+812    	; 0x7b98 <getch>
+    786c:	81 34       	cpi	r24, 0x41	; 65
+    786e:	29 f4       	brne	.+10     	; 0x787a <main+0x7a>
+    7870:	81 e0       	ldi	r24, 0x01	; 1
+    7872:	14 d2       	rcall	.+1064   	; 0x7c9c <getNch>
+    7874:	83 e0       	ldi	r24, 0x03	; 3
+    7876:	2a d1       	rcall	.+596    	; 0x7acc <putch>
+    7878:	8d c0       	rjmp	.+282    	; 0x7994 <main+0x194>
+    787a:	82 34       	cpi	r24, 0x42	; 66
+    787c:	19 f4       	brne	.+6      	; 0x7884 <main+0x84>
+    787e:	84 e1       	ldi	r24, 0x14	; 20
+    7880:	0d d2       	rcall	.+1050   	; 0x7c9c <getNch>
+    7882:	88 c0       	rjmp	.+272    	; 0x7994 <main+0x194>
+    7884:	85 34       	cpi	r24, 0x45	; 69
+    7886:	19 f4       	brne	.+6      	; 0x788e <main+0x8e>
+    7888:	85 e0       	ldi	r24, 0x05	; 5
+    788a:	08 d2       	rcall	.+1040   	; 0x7c9c <getNch>
+    788c:	83 c0       	rjmp	.+262    	; 0x7994 <main+0x194>
+    788e:	85 35       	cpi	r24, 0x55	; 85
+    7890:	69 f4       	brne	.+26     	; 0x78ac <main+0xac>
+    7892:	82 d1       	rcall	.+772    	; 0x7b98 <getch>
+    7894:	08 2f       	mov	r16, r24
+    7896:	10 e0       	ldi	r17, 0x00	; 0
+    7898:	7f d1       	rcall	.+766    	; 0x7b98 <getch>
+    789a:	90 e0       	ldi	r25, 0x00	; 0
+    789c:	d8 2f       	mov	r29, r24
+    789e:	cc 27       	eor	r28, r28
+    78a0:	c0 2b       	or	r28, r16
+    78a2:	d1 2b       	or	r29, r17
+    78a4:	cc 0f       	add	r28, r28
+    78a6:	dd 1f       	adc	r29, r29
+    78a8:	f3 d1       	rcall	.+998    	; 0x7c90 <verifySpace>
+    78aa:	74 c0       	rjmp	.+232    	; 0x7994 <main+0x194>
+    78ac:	86 35       	cpi	r24, 0x56	; 86
+    78ae:	29 f4       	brne	.+10     	; 0x78ba <main+0xba>
+    78b0:	84 e0       	ldi	r24, 0x04	; 4
+    78b2:	f4 d1       	rcall	.+1000   	; 0x7c9c <getNch>
+    78b4:	80 e0       	ldi	r24, 0x00	; 0
+    78b6:	0a d1       	rcall	.+532    	; 0x7acc <putch>
+    78b8:	6d c0       	rjmp	.+218    	; 0x7994 <main+0x194>
+    78ba:	84 36       	cpi	r24, 0x64	; 100
+    78bc:	09 f0       	breq	.+2      	; 0x78c0 <main+0xc0>
+    78be:	34 c0       	rjmp	.+104    	; 0x7928 <main+0x128>
+    78c0:	6b d1       	rcall	.+726    	; 0x7b98 <getch>
+    78c2:	6a d1       	rcall	.+724    	; 0x7b98 <getch>
+    78c4:	08 2f       	mov	r16, r24
+    78c6:	68 d1       	rcall	.+720    	; 0x7b98 <getch>
+    78c8:	fe 01       	movw	r30, r28
+    78ca:	c0 92 57 00 	sts	0x0057, r12
+    78ce:	e8 95       	spm
+    78d0:	60 2f       	mov	r22, r16
+    78d2:	70 e0       	ldi	r23, 0x00	; 0
+    78d4:	80 e0       	ldi	r24, 0x00	; 0
+    78d6:	91 e0       	ldi	r25, 0x01	; 1
+    78d8:	14 d1       	rcall	.+552    	; 0x7b02 <recvblock>
+    78da:	da d1       	rcall	.+948    	; 0x7c90 <verifySpace>
+    78dc:	07 b6       	in	r0, 0x37	; 55
+    78de:	00 fc       	sbrc	r0, 0
+    78e0:	fd cf       	rjmp	.-6      	; 0x78dc <main+0xdc>
+    78e2:	fe 01       	movw	r30, r28
+    78e4:	a0 e0       	ldi	r26, 0x00	; 0
+    78e6:	b1 e0       	ldi	r27, 0x01	; 1
+    78e8:	2c 91       	ld	r18, X
+    78ea:	30 e0       	ldi	r19, 0x00	; 0
+    78ec:	11 96       	adiw	r26, 0x01	; 1
+    78ee:	8c 91       	ld	r24, X
+    78f0:	11 97       	sbiw	r26, 0x01	; 1
+    78f2:	90 e0       	ldi	r25, 0x00	; 0
+    78f4:	98 2f       	mov	r25, r24
+    78f6:	88 27       	eor	r24, r24
+    78f8:	82 2b       	or	r24, r18
+    78fa:	93 2b       	or	r25, r19
+    78fc:	12 96       	adiw	r26, 0x02	; 2
+    78fe:	0c 01       	movw	r0, r24
+    7900:	d0 92 57 00 	sts	0x0057, r13
+    7904:	e8 95       	spm
+    7906:	11 24       	eor	r1, r1
+    7908:	32 96       	adiw	r30, 0x02	; 2
+    790a:	81 e0       	ldi	r24, 0x01	; 1
+    790c:	a0 38       	cpi	r26, 0x80	; 128
+    790e:	b8 07       	cpc	r27, r24
+    7910:	59 f7       	brne	.-42     	; 0x78e8 <main+0xe8>
+    7912:	fe 01       	movw	r30, r28
+    7914:	e0 92 57 00 	sts	0x0057, r14
+    7918:	e8 95       	spm
+    791a:	07 b6       	in	r0, 0x37	; 55
+    791c:	00 fc       	sbrc	r0, 0
+    791e:	fd cf       	rjmp	.-6      	; 0x791a <main+0x11a>
+    7920:	f0 92 57 00 	sts	0x0057, r15
+    7924:	e8 95       	spm
+    7926:	36 c0       	rjmp	.+108    	; 0x7994 <main+0x194>
+    7928:	84 37       	cpi	r24, 0x74	; 116
+    792a:	e1 f4       	brne	.+56     	; 0x7964 <main+0x164>
+    792c:	35 d1       	rcall	.+618    	; 0x7b98 <getch>
+    792e:	34 d1       	rcall	.+616    	; 0x7b98 <getch>
+    7930:	08 2f       	mov	r16, r24
+    7932:	32 d1       	rcall	.+612    	; 0x7b98 <getch>
+    7934:	ad d1       	rcall	.+858    	; 0x7c90 <verifySpace>
+    7936:	60 2f       	mov	r22, r16
+    7938:	70 e0       	ldi	r23, 0x00	; 0
+    793a:	80 2f       	mov	r24, r16
+    793c:	fe 01       	movw	r30, r28
+    793e:	a0 e0       	ldi	r26, 0x00	; 0
+    7940:	b1 e0       	ldi	r27, 0x01	; 1
+    7942:	01 c0       	rjmp	.+2      	; 0x7946 <main+0x146>
+    7944:	f9 01       	movw	r30, r18
+    7946:	9f 01       	movw	r18, r30
+    7948:	2f 5f       	subi	r18, 0xFF	; 255
+    794a:	3f 4f       	sbci	r19, 0xFF	; 255
+    794c:	e4 91       	lpm	r30, Z+
+    794e:	ed 93       	st	X+, r30
+    7950:	81 50       	subi	r24, 0x01	; 1
+    7952:	c1 f7       	brne	.-16     	; 0x7944 <main+0x144>
+    7954:	21 96       	adiw	r28, 0x01	; 1
+    7956:	01 50       	subi	r16, 0x01	; 1
+    7958:	c0 0f       	add	r28, r16
+    795a:	d1 1d       	adc	r29, r1
+    795c:	80 e0       	ldi	r24, 0x00	; 0
+    795e:	91 e0       	ldi	r25, 0x01	; 1
+    7960:	69 d0       	rcall	.+210    	; 0x7a34 <sendblock>
+    7962:	18 c0       	rjmp	.+48     	; 0x7994 <main+0x194>
+    7964:	85 37       	cpi	r24, 0x75	; 117
+    7966:	41 f4       	brne	.+16     	; 0x7978 <main+0x178>
+    7968:	93 d1       	rcall	.+806    	; 0x7c90 <verifySpace>
+    796a:	8e e1       	ldi	r24, 0x1E	; 30
+    796c:	af d0       	rcall	.+350    	; 0x7acc <putch>
+    796e:	85 e9       	ldi	r24, 0x95	; 149
+    7970:	ad d0       	rcall	.+346    	; 0x7acc <putch>
+    7972:	8f e0       	ldi	r24, 0x0F	; 15
+    7974:	ab d0       	rcall	.+342    	; 0x7acc <putch>
+    7976:	0e c0       	rjmp	.+28     	; 0x7994 <main+0x194>
+    7978:	81 35       	cpi	r24, 0x51	; 81
+    797a:	21 f4       	brne	.+8      	; 0x7984 <main+0x184>
+    797c:	88 e0       	ldi	r24, 0x08	; 8
+    797e:	7d d1       	rcall	.+762    	; 0x7c7a <watchdogConfig>
+    7980:	87 d1       	rcall	.+782    	; 0x7c90 <verifySpace>
+    7982:	08 c0       	rjmp	.+16     	; 0x7994 <main+0x194>
+    7984:	8e 34       	cpi	r24, 0x4E	; 78
+    7986:	29 f4       	brne	.+10     	; 0x7992 <main+0x192>
+    7988:	8f e4       	ldi	r24, 0x4F	; 79
+    798a:	a0 d0       	rcall	.+320    	; 0x7acc <putch>
+    798c:	8b e4       	ldi	r24, 0x4B	; 75
+    798e:	9e d0       	rcall	.+316    	; 0x7acc <putch>
+    7990:	4e cf       	rjmp	.-356    	; 0x782e <main+0x2e>
+    7992:	7e d1       	rcall	.+764    	; 0x7c90 <verifySpace>
+    7994:	80 e1       	ldi	r24, 0x10	; 16
+    7996:	9a d0       	rcall	.+308    	; 0x7acc <putch>
+    7998:	68 cf       	rjmp	.-304    	; 0x786a <main+0x6a>
+
+0000799a <W51_xfer>:
+    }
+}
+
+uint8_t W51_xfer(uint16_t addr, uint8_t data, uint8_t opcode)
+{
+    PORTB &= ~(_BV(PB2));                       // Make SPI SS low
+    799a:	2a 98       	cbi	0x05, 2	; 5
+    SPDR = opcode;
+    799c:	4e bd       	out	0x2e, r20	; 46
+    while (!(SPSR & _BV(SPIF))); // wait for SPI
+    799e:	0d b4       	in	r0, 0x2d	; 45
+    79a0:	07 fe       	sbrs	r0, 7
+    79a2:	fd cf       	rjmp	.-6      	; 0x799e <W51_xfer+0x4>
+    SPDR = addr >> 8;
+    79a4:	29 2f       	mov	r18, r25
+    79a6:	33 27       	eor	r19, r19
+    79a8:	2e bd       	out	0x2e, r18	; 46
+    while (!(SPSR & _BV(SPIF))); // wait for SPI
+    79aa:	0d b4       	in	r0, 0x2d	; 45
+    79ac:	07 fe       	sbrs	r0, 7
+    79ae:	fd cf       	rjmp	.-6      	; 0x79aa <W51_xfer+0x10>
+    SPDR = addr & 0xff;
+    79b0:	8e bd       	out	0x2e, r24	; 46
+    while (!(SPSR & _BV(SPIF))); // wait for SPI
+    79b2:	0d b4       	in	r0, 0x2d	; 45
+    79b4:	07 fe       	sbrs	r0, 7
+    79b6:	fd cf       	rjmp	.-6      	; 0x79b2 <W51_xfer+0x18>
+    SPDR = data;
+    79b8:	6e bd       	out	0x2e, r22	; 46
+    while (!(SPSR & _BV(SPIF))); // wait for SPI
+    79ba:	0d b4       	in	r0, 0x2d	; 45
+    79bc:	07 fe       	sbrs	r0, 7
+    79be:	fd cf       	rjmp	.-6      	; 0x79ba <W51_xfer+0x20>
+    PORTB |= (_BV(PB2));                        // Make SPI SS high
+    79c0:	2a 9a       	sbi	0x05, 2	; 5
+    return SPDR;
+    79c2:	8e b5       	in	r24, 0x2e	; 46
+}
+    79c4:	08 95       	ret
+
+000079c6 <W51_write>:
+
+void W51_write(uint16_t addr, uint8_t data)
+{
+    W51_xfer(addr, data, W5100_WRITE_OPCODE);
+    79c6:	40 ef       	ldi	r20, 0xF0	; 240
+    79c8:	e8 cf       	rjmp	.-48     	; 0x799a <W51_xfer>
+
+000079ca <W51_read>:
+}
+
+uint8_t W51_read(uint16_t addr)
+{
+    return W51_xfer(addr, 0, W5100_READ_OPCODE);
+    79ca:	60 e0       	ldi	r22, 0x00	; 0
+    79cc:	4f e0       	ldi	r20, 0x0F	; 15
+    79ce:	e5 cf       	rjmp	.-54     	; 0x799a <W51_xfer>
+
+000079d0 <W51_write16>:
+}
+
+void W51_write16(uint16_t addr, uint16_t data)
+{
+    79d0:	0f 93       	push	r16
+    79d2:	1f 93       	push	r17
+    79d4:	cf 93       	push	r28
+    79d6:	df 93       	push	r29
+    79d8:	ec 01       	movw	r28, r24
+    79da:	8b 01       	movw	r16, r22
+    W51_write(addr, data >> 8);     // write MSB
+    79dc:	67 2f       	mov	r22, r23
+    79de:	77 27       	eor	r23, r23
+    79e0:	f2 df       	rcall	.-28     	; 0x79c6 <W51_write>
+    W51_write(addr+1, data & 0xFF); // write LSB
+    79e2:	ce 01       	movw	r24, r28
+    79e4:	01 96       	adiw	r24, 0x01	; 1
+    79e6:	60 2f       	mov	r22, r16
+    79e8:	ee df       	rcall	.-36     	; 0x79c6 <W51_write>
+}
+    79ea:	df 91       	pop	r29
+    79ec:	cf 91       	pop	r28
+    79ee:	1f 91       	pop	r17
+    79f0:	0f 91       	pop	r16
+    79f2:	08 95       	ret
+
+000079f4 <W51_read16>:
+
+uint16_t W51_read16(uint16_t addr)
+{
+    79f4:	0f 93       	push	r16
+    79f6:	1f 93       	push	r17
+    79f8:	cf 93       	push	r28
+    79fa:	df 93       	push	r29
+    79fc:	ec 01       	movw	r28, r24
+    uint16_t val;
+
+    val = W51_read(addr) << 8;  // read MSB (must be read first)
+    79fe:	e5 df       	rcall	.-54     	; 0x79ca <W51_read>
+    7a00:	90 e0       	ldi	r25, 0x00	; 0
+    7a02:	18 2f       	mov	r17, r24
+    7a04:	00 27       	eor	r16, r16
+    val |= W51_read(addr+1);    // read LSB
+    7a06:	ce 01       	movw	r24, r28
+    7a08:	01 96       	adiw	r24, 0x01	; 1
+    7a0a:	df df       	rcall	.-66     	; 0x79ca <W51_read>
+    7a0c:	90 e0       	ldi	r25, 0x00	; 0
+
+    return val;
+}
+    7a0e:	80 2b       	or	r24, r16
+    7a10:	91 2b       	or	r25, r17
+    7a12:	df 91       	pop	r29
+    7a14:	cf 91       	pop	r28
+    7a16:	1f 91       	pop	r17
+    7a18:	0f 91       	pop	r16
+    7a1a:	08 95       	ret
+
+00007a1c <W51_execute>:
+
+void W51_execute(uint16_t cmd)
+{
+    7a1c:	bc 01       	movw	r22, r24
+    W51_write(W5100_SKT_BASE(0) + W5100_CR_OFFSET, cmd);
+    7a1e:	81 e0       	ldi	r24, 0x01	; 1
+    7a20:	94 e0       	ldi	r25, 0x04	; 4
+    7a22:	d1 df       	rcall	.-94     	; 0x79c6 <W51_write>
+    while(W51_read(W5100_SKT_BASE(0) + W5100_CR_OFFSET));
+    7a24:	81 e0       	ldi	r24, 0x01	; 1
+    7a26:	94 e0       	ldi	r25, 0x04	; 4
+    7a28:	d0 df       	rcall	.-96     	; 0x79ca <W51_read>
+    7a2a:	88 23       	and	r24, r24
+    7a2c:	d9 f7       	brne	.-10     	; 0x7a24 <W51_execute+0x8>
+}
+    7a2e:	08 95       	ret
+
+00007a30 <watchdogReset>:
+//   return getch();
+// }
+
+// Watchdog functions. These are only safe with interrupts turned off.
+void watchdogReset() {
+  __asm__ __volatile__ (
+    7a30:	a8 95       	wdr
+    "wdr\n"
+  );
+}
+    7a32:	08 95       	ret
+
+00007a34 <sendblock>:
+        }
+    }
+}
+
+void sendblock(uint8_t *ptr, uint16_t length)
+{
+    7a34:	cf 92       	push	r12
+    7a36:	df 92       	push	r13
+    7a38:	ef 92       	push	r14
+    7a3a:	ff 92       	push	r15
+    7a3c:	0f 93       	push	r16
+    7a3e:	1f 93       	push	r17
+    7a40:	cf 93       	push	r28
+    7a42:	df 93       	push	r29
+    7a44:	7c 01       	movw	r14, r24
+    7a46:	eb 01       	movw	r28, r22
+    uint16_t buffer_ptr, i;
+
+    watchdogReset();
+    7a48:	f3 df       	rcall	.-26     	; 0x7a30 <watchdogReset>
+    if(ethernet_mode){
+    7a4a:	80 91 08 02 	lds	r24, 0x0208
+    7a4e:	88 23       	and	r24, r24
+    7a50:	91 f1       	breq	.+100    	; 0x7ab6 <sendblock+0x82>
+        // wait for space/data in buffer
+        while(W51_read16(W5100_SKT_BASE(0) + W5100_TX_FSR_OFFSET) < length);
+    7a52:	80 e2       	ldi	r24, 0x20	; 32
+    7a54:	94 e0       	ldi	r25, 0x04	; 4
+    7a56:	ce df       	rcall	.-100    	; 0x79f4 <W51_read16>
+    7a58:	8c 17       	cp	r24, r28
+    7a5a:	9d 07       	cpc	r25, r29
+    7a5c:	d0 f3       	brcs	.-12     	; 0x7a52 <sendblock+0x1e>
+
+        // get pointer into buffer
+        buffer_ptr = W51_read16(W5100_SKT_BASE(0) + W5100_TX_WR_OFFSET);
+    7a5e:	84 e2       	ldi	r24, 0x24	; 36
+    7a60:	94 e0       	ldi	r25, 0x04	; 4
+    7a62:	c8 df       	rcall	.-112    	; 0x79f4 <W51_read16>
+    7a64:	6c 01       	movw	r12, r24
+
+        // transfer data to buffer
+        for(i=0; i<length; i++){
+    7a66:	00 e0       	ldi	r16, 0x00	; 0
+    7a68:	10 e0       	ldi	r17, 0x00	; 0
+    7a6a:	09 c0       	rjmp	.+18     	; 0x7a7e <sendblock+0x4a>
+            W51_write(W5100_TXBUFADDR + ((buffer_ptr++) & W5100_TX_BUF_MASK), *(ptr++));
+    7a6c:	f7 01       	movw	r30, r14
+    7a6e:	61 91       	ld	r22, Z+
+    7a70:	7f 01       	movw	r14, r30
+    7a72:	97 70       	andi	r25, 0x07	; 7
+    7a74:	80 50       	subi	r24, 0x00	; 0
+    7a76:	90 4c       	sbci	r25, 0xC0	; 192
+    7a78:	a6 df       	rcall	.-180    	; 0x79c6 <W51_write>
+
+        // get pointer into buffer
+        buffer_ptr = W51_read16(W5100_SKT_BASE(0) + W5100_TX_WR_OFFSET);
+
+        // transfer data to buffer
+        for(i=0; i<length; i++){
+    7a7a:	0f 5f       	subi	r16, 0xFF	; 255
+    7a7c:	1f 4f       	sbci	r17, 0xFF	; 255
+    7a7e:	c8 01       	movw	r24, r16
+    7a80:	8c 0d       	add	r24, r12
+    7a82:	9d 1d       	adc	r25, r13
+    7a84:	0c 17       	cp	r16, r28
+    7a86:	1d 07       	cpc	r17, r29
+    7a88:	88 f3       	brcs	.-30     	; 0x7a6c <sendblock+0x38>
+            W51_write(W5100_TXBUFADDR + ((buffer_ptr++) & W5100_TX_BUF_MASK), *(ptr++));
+        }
+
+        // write updated buffer pointer
+        W51_write16(W5100_SKT_BASE(0) + W5100_TX_WR_OFFSET, buffer_ptr);
+    7a8a:	b6 01       	movw	r22, r12
+    7a8c:	6c 0f       	add	r22, r28
+    7a8e:	7d 1f       	adc	r23, r29
+    7a90:	84 e2       	ldi	r24, 0x24	; 36
+    7a92:	94 e0       	ldi	r25, 0x04	; 4
+    7a94:	9d df       	rcall	.-198    	; 0x79d0 <W51_write16>
+
+        // execute transmit command
+        W51_execute(W5100_SKT_CR_SEND);
+    7a96:	80 e2       	ldi	r24, 0x20	; 32
+    7a98:	90 e0       	ldi	r25, 0x00	; 0
+    7a9a:	c0 df       	rcall	.-128    	; 0x7a1c <W51_execute>
+        watchdogReset();
+    7a9c:	c9 df       	rcall	.-110    	; 0x7a30 <watchdogReset>
+    7a9e:	0d c0       	rjmp	.+26     	; 0x7aba <sendblock+0x86>
+    }else{
+        while(length--){ // uses less code than for(i=0; i<length; i++)
+            while(!(UCSR0A & _BV(UDRE0)));
+    7aa0:	80 91 c0 00 	lds	r24, 0x00C0
+    7aa4:	85 ff       	sbrs	r24, 5
+    7aa6:	fc cf       	rjmp	.-8      	; 0x7aa0 <sendblock+0x6c>
+            UDR0 = *(ptr++);
+    7aa8:	f7 01       	movw	r30, r14
+    7aaa:	81 91       	ld	r24, Z+
+    7aac:	7f 01       	movw	r14, r30
+    7aae:	80 93 c6 00 	sts	0x00C6, r24
+            watchdogReset();
+    7ab2:	be df       	rcall	.-132    	; 0x7a30 <watchdogReset>
+    7ab4:	21 97       	sbiw	r28, 0x01	; 1
+
+        // execute transmit command
+        W51_execute(W5100_SKT_CR_SEND);
+        watchdogReset();
+    }else{
+        while(length--){ // uses less code than for(i=0; i<length; i++)
+    7ab6:	20 97       	sbiw	r28, 0x00	; 0
+    7ab8:	99 f7       	brne	.-26     	; 0x7aa0 <sendblock+0x6c>
+            while(!(UCSR0A & _BV(UDRE0)));
+            UDR0 = *(ptr++);
+            watchdogReset();
+        }
+    }
+}
+    7aba:	df 91       	pop	r29
+    7abc:	cf 91       	pop	r28
+    7abe:	1f 91       	pop	r17
+    7ac0:	0f 91       	pop	r16
+    7ac2:	ff 90       	pop	r15
+    7ac4:	ef 90       	pop	r14
+    7ac6:	df 90       	pop	r13
+    7ac8:	cf 90       	pop	r12
+    7aca:	08 95       	ret
+
+00007acc <putch>:
+#endif
+
+void putch(char ch) {
+    7acc:	df 93       	push	r29
+    7ace:	cf 93       	push	r28
+    7ad0:	0f 92       	push	r0
+    7ad2:	cd b7       	in	r28, 0x3d	; 61
+    7ad4:	de b7       	in	r29, 0x3e	; 62
+    7ad6:	89 83       	std	Y+1, r24	; 0x01
+#ifndef SOFT_UART
+    if(ethernet_mode){
+    7ad8:	80 91 08 02 	lds	r24, 0x0208
+    7adc:	88 23       	and	r24, r24
+    7ade:	31 f0       	breq	.+12     	; 0x7aec <putch+0x20>
+#ifdef FAST_BUT_FAT
+        sendblock((uint8_t*)&ch, 1);
+    7ae0:	ce 01       	movw	r24, r28
+    7ae2:	01 96       	adiw	r24, 0x01	; 1
+    7ae4:	61 e0       	ldi	r22, 0x01	; 1
+    7ae6:	70 e0       	ldi	r23, 0x00	; 0
+    7ae8:	a5 df       	rcall	.-182    	; 0x7a34 <sendblock>
+    7aea:	07 c0       	rjmp	.+14     	; 0x7afa <putch+0x2e>
+        tx_ptr++;
+        W51_write16(W5100_SKT_BASE(0) + W5100_TX_WR_OFFSET, tx_ptr);
+        W51_execute(W5100_SKT_CR_SEND);
+#endif
+    }else{
+        while (!(UCSR0A & _BV(UDRE0)));
+    7aec:	80 91 c0 00 	lds	r24, 0x00C0
+    7af0:	85 ff       	sbrs	r24, 5
+    7af2:	fc cf       	rjmp	.-8      	; 0x7aec <putch+0x20>
+        UDR0 = ch;
+    7af4:	89 81       	ldd	r24, Y+1	; 0x01
+    7af6:	80 93 c6 00 	sts	0x00C6, r24
+      [uartBit] "I" (UART_TX_BIT)
+    :
+      "r25"
+  );
+#endif
+}
+    7afa:	0f 90       	pop	r0
+    7afc:	cf 91       	pop	r28
+    7afe:	df 91       	pop	r29
+    7b00:	08 95       	ret
+
+00007b02 <recvblock>:
+    }
+}
+
+#ifdef FAST_BUT_FAT
+void recvblock(uint8_t *ptr, uint16_t length)
+{
+    7b02:	cf 92       	push	r12
+    7b04:	df 92       	push	r13
+    7b06:	ef 92       	push	r14
+    7b08:	ff 92       	push	r15
+    7b0a:	0f 93       	push	r16
+    7b0c:	1f 93       	push	r17
+    7b0e:	cf 93       	push	r28
+    7b10:	df 93       	push	r29
+    7b12:	ec 01       	movw	r28, r24
+    7b14:	8b 01       	movw	r16, r22
+    uint16_t buffer_ptr, i;
+
+    watchdogReset();
+    7b16:	8c df       	rcall	.-232    	; 0x7a30 <watchdogReset>
+    if(ethernet_mode){
+    7b18:	80 91 08 02 	lds	r24, 0x0208
+    7b1c:	88 23       	and	r24, r24
+    7b1e:	81 f1       	breq	.+96     	; 0x7b80 <recvblock+0x7e>
+        // wait for space/data in buffer
+        while(W51_read16(W5100_SKT_BASE(0) + W5100_RX_RSR_OFFSET) < length);
+    7b20:	86 e2       	ldi	r24, 0x26	; 38
+    7b22:	94 e0       	ldi	r25, 0x04	; 4
+    7b24:	67 df       	rcall	.-306    	; 0x79f4 <W51_read16>
+    7b26:	80 17       	cp	r24, r16
+    7b28:	91 07       	cpc	r25, r17
+    7b2a:	d0 f3       	brcs	.-12     	; 0x7b20 <recvblock+0x1e>
+
+        // get pointer into buffer
+        buffer_ptr = W51_read16(W5100_SKT_BASE(0) + W5100_RX_RD_OFFSET);
+    7b2c:	88 e2       	ldi	r24, 0x28	; 40
+    7b2e:	94 e0       	ldi	r25, 0x04	; 4
+    7b30:	61 df       	rcall	.-318    	; 0x79f4 <W51_read16>
+    7b32:	6c 01       	movw	r12, r24
+
+        // transfer data from buffer
+        for(i=0; i<length; i++){
+    7b34:	ee 24       	eor	r14, r14
+    7b36:	ff 24       	eor	r15, r15
+    7b38:	08 c0       	rjmp	.+16     	; 0x7b4a <recvblock+0x48>
+            *(ptr++) = W51_read(W5100_RXBUFADDR + ((buffer_ptr++) & W5100_RX_BUF_MASK));
+    7b3a:	97 70       	andi	r25, 0x07	; 7
+    7b3c:	80 50       	subi	r24, 0x00	; 0
+    7b3e:	90 4a       	sbci	r25, 0xA0	; 160
+    7b40:	44 df       	rcall	.-376    	; 0x79ca <W51_read>
+    7b42:	89 93       	st	Y+, r24
+
+        // get pointer into buffer
+        buffer_ptr = W51_read16(W5100_SKT_BASE(0) + W5100_RX_RD_OFFSET);
+
+        // transfer data from buffer
+        for(i=0; i<length; i++){
+    7b44:	08 94       	sec
+    7b46:	e1 1c       	adc	r14, r1
+    7b48:	f1 1c       	adc	r15, r1
+    7b4a:	c7 01       	movw	r24, r14
+    7b4c:	8c 0d       	add	r24, r12
+    7b4e:	9d 1d       	adc	r25, r13
+    7b50:	e0 16       	cp	r14, r16
+    7b52:	f1 06       	cpc	r15, r17
+    7b54:	90 f3       	brcs	.-28     	; 0x7b3a <recvblock+0x38>
+            *(ptr++) = W51_read(W5100_RXBUFADDR + ((buffer_ptr++) & W5100_RX_BUF_MASK));
+        }
+
+        // write updated buffer pointer
+        W51_write16(W5100_SKT_BASE(0) + W5100_RX_RD_OFFSET, buffer_ptr);
+    7b56:	b6 01       	movw	r22, r12
+    7b58:	60 0f       	add	r22, r16
+    7b5a:	71 1f       	adc	r23, r17
+    7b5c:	88 e2       	ldi	r24, 0x28	; 40
+    7b5e:	94 e0       	ldi	r25, 0x04	; 4
+    7b60:	37 df       	rcall	.-402    	; 0x79d0 <W51_write16>
+
+        // execute receive command
+        W51_execute(W5100_SKT_CR_RECV);
+    7b62:	80 e4       	ldi	r24, 0x40	; 64
+    7b64:	90 e0       	ldi	r25, 0x00	; 0
+    7b66:	5a df       	rcall	.-332    	; 0x7a1c <W51_execute>
+        watchdogReset();
+    7b68:	63 df       	rcall	.-314    	; 0x7a30 <watchdogReset>
+    7b6a:	0d c0       	rjmp	.+26     	; 0x7b86 <recvblock+0x84>
+    }else{
+        while(length--){ // uses less code than for(i=0; i<length; i++)
+            while(!(UCSR0A & _BV(RXC0)));
+    7b6c:	80 91 c0 00 	lds	r24, 0x00C0
+    7b70:	87 ff       	sbrs	r24, 7
+    7b72:	fc cf       	rjmp	.-8      	; 0x7b6c <recvblock+0x6a>
+            *(ptr++) = UDR0;
+    7b74:	80 91 c6 00 	lds	r24, 0x00C6
+    7b78:	89 93       	st	Y+, r24
+            watchdogReset();
+    7b7a:	5a df       	rcall	.-332    	; 0x7a30 <watchdogReset>
+    7b7c:	01 50       	subi	r16, 0x01	; 1
+    7b7e:	10 40       	sbci	r17, 0x00	; 0
+
+        // execute receive command
+        W51_execute(W5100_SKT_CR_RECV);
+        watchdogReset();
+    }else{
+        while(length--){ // uses less code than for(i=0; i<length; i++)
+    7b80:	01 15       	cp	r16, r1
+    7b82:	11 05       	cpc	r17, r1
+    7b84:	99 f7       	brne	.-26     	; 0x7b6c <recvblock+0x6a>
+            while(!(UCSR0A & _BV(RXC0)));
+            *(ptr++) = UDR0;
+            watchdogReset();
+        }
+    }
+}
+    7b86:	df 91       	pop	r29
+    7b88:	cf 91       	pop	r28
+    7b8a:	1f 91       	pop	r17
+    7b8c:	0f 91       	pop	r16
+    7b8e:	ff 90       	pop	r15
+    7b90:	ef 90       	pop	r14
+    7b92:	df 90       	pop	r13
+    7b94:	cf 90       	pop	r12
+    7b96:	08 95       	ret
+
+00007b98 <getch>:
+      "r25"
+  );
+#endif
+}
+
+uint8_t getch(void) {
+    7b98:	df 93       	push	r29
+    7b9a:	cf 93       	push	r28
+    7b9c:	0f 92       	push	r0
+    7b9e:	cd b7       	in	r28, 0x3d	; 61
+    7ba0:	de b7       	in	r29, 0x3e	; 62
+  uint8_t ch;
+
+  watchdogReset();
+    7ba2:	46 df       	rcall	.-372    	; 0x7a30 <watchdogReset>
+    :
+      "r25"
+);
+  return ch;
+#else
+  if(ethernet_mode){
+    7ba4:	80 91 08 02 	lds	r24, 0x0208
+    7ba8:	88 23       	and	r24, r24
+    7baa:	39 f0       	breq	.+14     	; 0x7bba <getch+0x22>
+#ifdef FAST_BUT_FAT
+      recvblock(&ch, 1);
+    7bac:	ce 01       	movw	r24, r28
+    7bae:	01 96       	adiw	r24, 0x01	; 1
+    7bb0:	61 e0       	ldi	r22, 0x01	; 1
+    7bb2:	70 e0       	ldi	r23, 0x00	; 0
+    7bb4:	a6 df       	rcall	.-180    	; 0x7b02 <recvblock>
+      return ch;
+    7bb6:	89 81       	ldd	r24, Y+1	; 0x01
+    7bb8:	06 c0       	rjmp	.+12     	; 0x7bc6 <getch+0x2e>
+      W51_write16(W5100_SKT_BASE(0) + W5100_RX_RD_OFFSET, rx_ptr+1);
+      W51_execute(W5100_SKT_CR_RECV);
+      return ch;
+#endif
+  }else{
+      while(!(UCSR0A & _BV(RXC0)));
+    7bba:	80 91 c0 00 	lds	r24, 0x00C0
+    7bbe:	87 ff       	sbrs	r24, 7
+    7bc0:	fc cf       	rjmp	.-8      	; 0x7bba <getch+0x22>
+      return UDR0;
+    7bc2:	80 91 c6 00 	lds	r24, 0x00C6
+  }
+#endif
+}
+    7bc6:	0f 90       	pop	r0
+    7bc8:	cf 91       	pop	r28
+    7bca:	df 91       	pop	r29
+    7bcc:	08 95       	ret
+
+00007bce <ethernet_init>:
+    W51_write(W5100_SKT_BASE(0) + W5100_CR_OFFSET, cmd);
+    while(W51_read(W5100_SKT_BASE(0) + W5100_CR_OFFSET));
+}
+
+void ethernet_init(void)
+{
+    7bce:	cf 93       	push	r28
+    7bd0:	df 93       	push	r29
+    // prepare SPI
+    PORTB |= _BV(PORTB2);                         // make sure SS is high
+    7bd2:	2a 9a       	sbi	0x05, 2	; 5
+    DDRB = _BV(PORTB2)|_BV(PORTB3)|_BV(PORTB5);   // set MOSI, SCK and SS as output, others as input
+    7bd4:	8c e2       	ldi	r24, 0x2C	; 44
+    7bd6:	84 b9       	out	0x04, r24	; 4
+    SPCR = _BV(SPE)|_BV(MSTR);                    // enable SPI, master mode 0
+    7bd8:	80 e5       	ldi	r24, 0x50	; 80
+    7bda:	8c bd       	out	0x2c, r24	; 44
+    // omitting this saves 6 bytes, and it's not like we're a high performance system...
+    SPSR |= _BV(SPI2X);                           // enable SPI double speed clock
+    7bdc:	8d b5       	in	r24, 0x2d	; 45
+    7bde:	81 60       	ori	r24, 0x01	; 1
+    7be0:	8d bd       	out	0x2d, r24	; 45
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+    7be2:	8f e3       	ldi	r24, 0x3F	; 63
+    7be4:	9c e9       	ldi	r25, 0x9C	; 156
+    7be6:	01 97       	sbiw	r24, 0x01	; 1
+    7be8:	f1 f7       	brne	.-4      	; 0x7be6 <ethernet_init+0x18>
+    7bea:	00 c0       	rjmp	.+0      	; 0x7bec <ethernet_init+0x1e>
+    7bec:	00 00       	nop
+
+    // wait for ethernet chip to initialise
+    _delay_ms(10); // datasheet says max 10ms but I have seen figures up to 300ms elsewhere.
+
+    W51_write(W5100_MR, W5100_MR_SOFTRST);      // force the w5100 to soft-reset
+    7bee:	80 e0       	ldi	r24, 0x00	; 0
+    7bf0:	90 e0       	ldi	r25, 0x00	; 0
+    7bf2:	60 e8       	ldi	r22, 0x80	; 128
+    7bf4:	e8 de       	rcall	.-560    	; 0x79c6 <W51_write>
+    7bf6:	8f e3       	ldi	r24, 0x3F	; 63
+    7bf8:	9c e9       	ldi	r25, 0x9C	; 156
+    7bfa:	01 97       	sbiw	r24, 0x01	; 1
+    7bfc:	f1 f7       	brne	.-4      	; 0x7bfa <ethernet_init+0x2c>
+    7bfe:	00 c0       	rjmp	.+0      	; 0x7c00 <ethernet_init+0x32>
+    7c00:	00 00       	nop
+    7c02:	80 e0       	ldi	r24, 0x00	; 0
+    7c04:	90 e0       	ldi	r25, 0x00	; 0
+    7c06:	01 c0       	rjmp	.+2      	; 0x7c0a <ethernet_init+0x3c>
+    w = W5100_GAR;
+    do{
+        W51_write(w, eeprom_read_byte((uint8_t*)((uint16_t)r)));
+        w++;
+        r++;
+    }while(r < EEPROM_BOOTLOADER_FLAG_OFFSET);
+    7c08:	ce 01       	movw	r24, r28
+    7c0a:	ec 01       	movw	r28, r24
+    7c0c:	21 96       	adiw	r28, 0x01	; 1
+    uint8_t r, w;
+
+    r = EEPROM_GATEWAY_OFFSET;
+    w = W5100_GAR;
+    do{
+        W51_write(w, eeprom_read_byte((uint8_t*)((uint16_t)r)));
+    7c0e:	40 96       	adiw	r24, 0x10	; 16
+    7c10:	4b d0       	rcall	.+150    	; 0x7ca8 <__eerd_byte_m328p>
+    7c12:	68 2f       	mov	r22, r24
+    7c14:	ce 01       	movw	r24, r28
+    7c16:	d7 de       	rcall	.-594    	; 0x79c6 <W51_write>
+        w++;
+        r++;
+    }while(r < EEPROM_BOOTLOADER_FLAG_OFFSET);
+    7c18:	c2 31       	cpi	r28, 0x12	; 18
+    7c1a:	d1 05       	cpc	r29, r1
+    7c1c:	a9 f7       	brne	.-22     	; 0x7c08 <ethernet_init+0x3a>
+#endif
+
+    // put socket 0 into listen mode
+    W51_write(W5100_SKT_BASE(0) + W5100_MR_OFFSET, W5100_SKT_MR_TCP);
+    7c1e:	80 e0       	ldi	r24, 0x00	; 0
+    7c20:	94 e0       	ldi	r25, 0x04	; 4
+    7c22:	61 e0       	ldi	r22, 0x01	; 1
+    7c24:	d0 de       	rcall	.-608    	; 0x79c6 <W51_write>
+    W51_write(W5100_SKT_BASE(0) + W5100_PORT_OFFSET, 0xf0); // port 0xf000 = 61440
+    7c26:	84 e0       	ldi	r24, 0x04	; 4
+    7c28:	94 e0       	ldi	r25, 0x04	; 4
+    7c2a:	60 ef       	ldi	r22, 0xF0	; 240
+    7c2c:	cc de       	rcall	.-616    	; 0x79c6 <W51_write>
+    W51_execute(W5100_SKT_CR_OPEN);
+    7c2e:	81 e0       	ldi	r24, 0x01	; 1
+    7c30:	90 e0       	ldi	r25, 0x00	; 0
+    7c32:	f4 de       	rcall	.-536    	; 0x7a1c <W51_execute>
+    // ... assume success
+    W51_execute(W5100_SKT_CR_LISTEN);
+    7c34:	82 e0       	ldi	r24, 0x02	; 2
+    7c36:	90 e0       	ldi	r25, 0x00	; 0
+    7c38:	f1 de       	rcall	.-542    	; 0x7a1c <W51_execute>
+    7c3a:	cf ef       	ldi	r28, 0xFF	; 255
+    7c3c:	df ef       	ldi	r29, 0xFF	; 255
+
+    // now wait for an incoming connection -- may take a while; watchdog will reset us if
+    // no connection arrives.
+    uint16_t a = 0xffff;
+    while(a){
+        watchdogReset();
+    7c3e:	f8 de       	rcall	.-528    	; 0x7a30 <watchdogReset>
+        if(W51_read(W5100_SKT_BASE(0) + W5100_SR_OFFSET) == W5100_SKT_SR_ESTABLISHED)
+    7c40:	83 e0       	ldi	r24, 0x03	; 3
+    7c42:	94 e0       	ldi	r25, 0x04	; 4
+    7c44:	c2 de       	rcall	.-636    	; 0x79ca <W51_read>
+    7c46:	87 31       	cpi	r24, 0x17	; 23
+    7c48:	41 f0       	breq	.+16     	; 0x7c5a <ethernet_init+0x8c>
+    7c4a:	8f e9       	ldi	r24, 0x9F	; 159
+    7c4c:	9c e8       	ldi	r25, 0x8C	; 140
+    7c4e:	01 97       	sbiw	r24, 0x01	; 1
+    7c50:	f1 f7       	brne	.-4      	; 0x7c4e <ethernet_init+0x80>
+    7c52:	00 c0       	rjmp	.+0      	; 0x7c54 <ethernet_init+0x86>
+    7c54:	00 00       	nop
+    7c56:	21 97       	sbiw	r28, 0x01	; 1
+    // ... assume success
+
+    // now wait for an incoming connection -- may take a while; watchdog will reset us if
+    // no connection arrives.
+    uint16_t a = 0xffff;
+    while(a){
+    7c58:	91 f7       	brne	.-28     	; 0x7c3e <ethernet_init+0x70>
+        if(W51_read(W5100_SKT_BASE(0) + W5100_SR_OFFSET) == W5100_SKT_SR_ESTABLISHED)
+            break;
+        _delay_ms(9); // 0xffff * 9 == 589 sec
+        a--;
+    }
+}
+    7c5a:	df 91       	pop	r29
+    7c5c:	cf 91       	pop	r28
+    7c5e:	08 95       	ret
+
+00007c60 <flash_led>:
+    7c60:	2f ef       	ldi	r18, 0xFF	; 255
+    7c62:	33 ef       	ldi	r19, 0xF3	; 243
+    7c64:	41 e0       	ldi	r20, 0x01	; 1
+    7c66:	21 50       	subi	r18, 0x01	; 1
+    7c68:	30 40       	sbci	r19, 0x00	; 0
+    7c6a:	40 40       	sbci	r20, 0x00	; 0
+    7c6c:	e1 f7       	brne	.-8      	; 0x7c66 <flash_led+0x6>
+    7c6e:	00 c0       	rjmp	.+0      	; 0x7c70 <flash_led+0x10>
+    7c70:	00 00       	nop
+}
+
+void flash_led(uint8_t count) {
+    do {
+        _delay_ms(40);
+        LED_PIN |= _BV(LED);
+    7c72:	1d 9a       	sbi	0x03, 5	; 3
+    } while (--count);
+    7c74:	81 50       	subi	r24, 0x01	; 1
+    7c76:	a1 f7       	brne	.-24     	; 0x7c60 <flash_led>
+    watchdogReset();
+    7c78:	db ce       	rjmp	.-586    	; 0x7a30 <watchdogReset>
+
+00007c7a <watchdogConfig>:
+    "wdr\n"
+  );
+}
+
+void watchdogConfig(uint8_t x) {
+  WDTCSR = _BV(WDCE) | _BV(WDE);
+    7c7a:	e0 e6       	ldi	r30, 0x60	; 96
+    7c7c:	f0 e0       	ldi	r31, 0x00	; 0
+    7c7e:	98 e1       	ldi	r25, 0x18	; 24
+    7c80:	90 83       	st	Z, r25
+  WDTCSR = x;
+    7c82:	80 83       	st	Z, r24
+}
+    7c84:	08 95       	ret
+
+00007c86 <appStart>:
+
+void appStart() {
+  watchdogConfig(WATCHDOG_OFF);
+    7c86:	80 e0       	ldi	r24, 0x00	; 0
+    7c88:	f8 df       	rcall	.-16     	; 0x7c7a <watchdogConfig>
+  __asm__ __volatile__ (
+    7c8a:	ee 27       	eor	r30, r30
+    7c8c:	ff 27       	eor	r31, r31
+    7c8e:	09 94       	ijmp
+
+00007c90 <verifySpace>:
+#endif
+    verifySpace();
+}
+
+void verifySpace() {
+    if (getch() != CRC_EOP) appStart();
+    7c90:	83 df       	rcall	.-250    	; 0x7b98 <getch>
+    7c92:	80 32       	cpi	r24, 0x20	; 32
+    7c94:	09 f0       	breq	.+2      	; 0x7c98 <verifySpace+0x8>
+    7c96:	f7 df       	rcall	.-18     	; 0x7c86 <appStart>
+    putch(STK_INSYNC);
+    7c98:	84 e1       	ldi	r24, 0x14	; 20
+    7c9a:	18 cf       	rjmp	.-464    	; 0x7acc <putch>
+
+00007c9c <getNch>:
+}
+#endif
+
+void getNch(uint8_t count) {
+#ifdef FAST_BUT_FAT
+    recvblock(discard, count);
+    7c9c:	68 2f       	mov	r22, r24
+    7c9e:	70 e0       	ldi	r23, 0x00	; 0
+    7ca0:	80 e1       	ldi	r24, 0x10	; 16
+    7ca2:	92 e0       	ldi	r25, 0x02	; 2
+    7ca4:	2e df       	rcall	.-420    	; 0x7b02 <recvblock>
+#else
+    do getch(); while (--count);
+#endif
+    verifySpace();
+    7ca6:	f4 cf       	rjmp	.-24     	; 0x7c90 <verifySpace>
+
+00007ca8 <__eerd_byte_m328p>:
+    7ca8:	f9 99       	sbic	0x1f, 1	; 31
+    7caa:	fe cf       	rjmp	.-4      	; 0x7ca8 <__eerd_byte_m328p>
+    7cac:	92 bd       	out	0x22, r25	; 34
+    7cae:	81 bd       	out	0x21, r24	; 33
+    7cb0:	f8 9a       	sbi	0x1f, 0	; 31
+    7cb2:	99 27       	eor	r25, r25
+    7cb4:	80 b5       	in	r24, 0x20	; 32
+    7cb6:	08 95       	ret
+
+00007cb8 <__eewr_byte_m328p>:
+    7cb8:	26 2f       	mov	r18, r22
+
+00007cba <__eewr_r18_m328p>:
+    7cba:	f9 99       	sbic	0x1f, 1	; 31
+    7cbc:	fe cf       	rjmp	.-4      	; 0x7cba <__eewr_r18_m328p>
+    7cbe:	1f ba       	out	0x1f, r1	; 31
+    7cc0:	92 bd       	out	0x22, r25	; 34
+    7cc2:	81 bd       	out	0x21, r24	; 33
+    7cc4:	20 bd       	out	0x20, r18	; 32
+    7cc6:	0f b6       	in	r0, 0x3f	; 63
+    7cc8:	f8 94       	cli
+    7cca:	fa 9a       	sbi	0x1f, 2	; 31
+    7ccc:	f9 9a       	sbi	0x1f, 1	; 31
+    7cce:	0f be       	out	0x3f, r0	; 63
+    7cd0:	01 96       	adiw	r24, 0x01	; 1
+    7cd2:	08 95       	ret

@@ -1,0 +1,11 @@
+./clean
+avr-gcc -g -Wall -Os -fno-inline-small-functions -fno-split-wide-types -mshort-calls -mmcu=atmega328p -DF_CPU=16000000L -DBAUD_RATE=115200 -c -o optiboot.o optiboot.c || exit 1
+avr-gcc -g -Wall -Os -fno-inline-small-functions -fno-split-wide-types -mshort-calls -mmcu=atmega328p -DF_CPU=16000000L -DBAUD_RATE=115200 -DFAST_BUT_FAT -c -o optiboot_fat.o optiboot.c || exit 1
+avr-gcc -g -Wall -Os -fno-inline-small-functions -fno-split-wide-types -mshort-calls -mmcu=atmega328p -DF_CPU=16000000L -DBAUD_RATE=115200 -Wl,--section-start=.text=0x7c00 -Wl,--relax -nostartfiles -o optiboot_atmega328.elf optiboot.o  || exit 1
+avr-gcc -g -Wall -Os -fno-inline-small-functions -fno-split-wide-types -mshort-calls -mmcu=atmega328p -DF_CPU=16000000L -DBAUD_RATE=115200 -Wl,--section-start=.text=0x7800 -Wl,--relax -nostartfiles -o optiboot_atmega328_fat.elf optiboot_fat.o  || exit 1
+avr-objcopy -j .text -j .data -O ihex optiboot_atmega328.elf optiboot_atmega328.hex
+avr-objcopy -j .text -j .data -O ihex optiboot_atmega328_fat.elf optiboot_atmega328_fat.hex
+avr-objdump -h -S optiboot_atmega328.elf > optiboot_atmega328.lst
+avr-objdump -h -S optiboot_atmega328_fat.elf > optiboot_atmega328_fat.lst
+./memory-usage ./optiboot_atmega328.elf atmega328p-1k
+./memory-usage ./optiboot_atmega328_fat.elf atmega328p-2k
